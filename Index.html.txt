@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Manga Merchant POS</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Metrophobic&family=Bricolage+Grotesque:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #fcf9f8;
+    font-family: 'Comfortaa', sans-serif;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-image: radial-gradient(#1c1b1b 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: #fcf9f8;
+    opacity: 0.92;
+    z-index: 0;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 420px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .logo-area {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-family: 'Metrophobic', sans-serif;
+    font-size: 32px;
+    line-height: 36px;
+    color: #1c1b1b;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+  .subtitle {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #41484c;
+    margin-top: 6px;
+  }
+  .sticker {
+    display: inline-block;
+    background: #fcd400;
+    border: 3px solid #1c1b1b;
+    box-shadow: 4px 4px 0 0 #1c1b1b;
+    padding: 4px 12px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    transform: rotate(3deg);
+    margin-bottom: 12px;
+  }
+  .nav-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 3px solid #1c1b1b;
+    box-shadow: 6px 6px 0 0 #1c1b1b;
+    padding: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #1c1b1b;
+    transition: transform 0.1s, box-shadow 0.1s;
+    cursor: pointer;
+  }
+  .nav-card:active, .nav-card:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 0 #1c1b1b;
+  }
+  .nav-card .icon-wrap {
+    width: 56px;
+    height: 56px;
+    border: 3px solid #1c1b1b;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .nav-card:nth-child(1) .icon-wrap { background: #a7d8f0; }
+  .nav-card:nth-child(2) .icon-wrap { background: #fcd400; }
+  .nav-card:nth-child(3) .icon-wrap { background: #ffc1cc; }
+  .nav-card .text h2 {
+    font-family: 'Metrophobic', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .nav-card .text p {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #41484c;
+    margin-top: 2px;
+  }
+  .badge {
+    margin-left: auto;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border: 2px solid #1c1b1b;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .nav-card:nth-child(1) .badge { background: #a7d8f0; }
+  .nav-card:nth-child(2) .badge { background: #fcd400; }
+  .nav-card:nth-child(3) .badge { background: #ffc1cc; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo-area">
+    <div class="sticker">✦ MANGA MERCHANT POS ✦</div>
+    <h1>Pilih Halaman</h1>
+    <p class="subtitle">点击下方进入各页面 · Choose a screen below</p>
+  </div>
+
+  <a class="nav-card" href="dashboard.html">
+    <div class="icon-wrap">🏠</div>
+    <div class="text">
+      <h2>Mitra Warung</h2>
+      <p>Dashboard utama toko</p>
+    </div>
+    <span class="badge">Home</span>
+  </a>
+
+  <a class="nav-card" href="inventaris.html">
+    <div class="icon-wrap">📦</div>
+    <div class="text">
+      <h2>Inventaris Barang</h2>
+      <p>Kelola stok produk</p>
+    </div>
+    <span class="badge">Stok</span>
+  </a>
+
+  <a class="nav-card" href="laporan.html">
+    <div class="icon-wrap">📊</div>
+    <div class="text">
+      <h2>Laporan Performa</h2>
+      <p>Analisa penjualan harian</p>
+    </div>
+    <span class="badge">Laporan</span>
+  </a>
+</div>
+</body>
+</html>

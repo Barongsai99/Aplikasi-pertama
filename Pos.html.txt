@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>POS Kasir - Manga Merchant</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Metrophobic&family=Bricolage+Grotesque:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#336479", "on-primary": "#ffffff", "primary-container": "#a7d8f0",
+          "on-primary-container": "#2d5f74", "secondary": "#705d00", "on-secondary": "#ffffff",
+          "secondary-container": "#fcd400", "on-secondary-container": "#6e5c00",
+          "tertiary": "#a03a57", "tertiary-container": "#ffc1cc", "on-tertiary-container": "#9a3652",
+          "background": "#fcf9f8", "on-background": "#1c1b1b", "surface": "#fcf9f8",
+          "on-surface": "#1c1b1b", "on-surface-variant": "#41484c",
+          "surface-container": "#f0eded", "surface-container-low": "#f6f3f2",
+          "surface-variant": "#e5e2e1", "outline": "#71787c", "outline-variant": "#c0c7cc",
+          "error": "#ba1a1a", "error-container": "#ffdad6", "on-error-container": "#93000a",
+          "secondary-fixed": "#ffe16d",
+        },
+        fontFamily: {
+          "headline-xl": ["Metrophobic"], "headline-lg": ["Metrophobic"],
+          "headline-lg-mobile": ["Metrophobic"], "body-md": ["Comfortaa"],
+          "label-sm": ["Bricolage Grotesque"], "speech-bubble": ["Comfortaa"],
+        },
+        fontSize: {
+          "headline-lg-mobile": ["24px", { lineHeight: "28px", fontWeight: "400" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "500" }],
+          "label-sm": ["12px", { lineHeight: "16px", fontWeight: "700" }],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .border-thick { border-width: 3px; border-style: solid; border-color: #1c1b1b; }
+  .border-thin  { border-width: 1.5px; border-style: solid; border-color: #1c1b1b; }
+  .block-shadow { box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); }
+  .block-shadow-sm { box-shadow: 2px 2px 0px 0px rgba(0,0,0,1); }
+  .halftone-bg {
+    background-image: radial-gradient(#1c1b1b 1px, transparent 1px);
+    background-size: 8px 8px; opacity: 0.08;
+  }
+  .speech-bubble-tip::after {
+    content: ''; position: absolute; bottom: -10px; left: 20px;
+    width: 0; height: 0;
+    border-left: 10px solid transparent; border-right: 10px solid transparent;
+    border-top: 10px solid #1c1b1b;
+  }
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-28">
+
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background border-b-[3px] border-on-background px-4 py-4 flex items-center gap-3 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+  <a href="dashboard.html" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors">
+    <span class="material-symbols-outlined">arrow_back</span>
+  </a>
+  <h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold">POS Kasir</h1>
+  <div class="ml-auto bg-secondary-container border-thick px-3 py-1 block-shadow-sm transform rotate-2 font-label-sm text-label-sm italic">Cha-ching! 💰</div>
+</header>
+
+<main class="pt-24 px-4 space-y-5">
+
+  <!-- Search Bar -->
+  <div class="relative">
+    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+    <input type="text" placeholder="Cari produk..." class="w-full pl-10 pr-4 py-3 border-thick border-on-background rounded-xl bg-surface block-shadow font-body-md focus:outline-none focus:ring-0 focus:shadow-none"/>
+  </div>
+
+  <!-- Product Grid -->
+  <section>
+    <h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold mb-3">Produk</h2>
+    <div id="product-grid" class="grid grid-cols-2 gap-3">
+      <!-- Loading state -->
+      <div class="col-span-2 bg-surface border-thick block-shadow rounded-xl p-6 flex flex-col items-center gap-3">
+        <div class="w-10 h-10 border-[3px] border-primary border-t-transparent rounded-full animate-spin"></div>
+        <p class="font-speech-bubble text-sm italic text-on-surface-variant">Memuat produk dari Google Sheets...</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Cart Bar -->
+<div id="cart-bar" class="hidden fixed bottom-20 left-4 right-4 z-40 bg-secondary-container border-thick block-shadow rounded-2xl p-4 transform transition-all">
+  <div class="flex items-center justify-between mb-3">
+    <div>
+      <p class="font-label-sm text-label-sm text-on-secondary-container">Keranjang</p>
+      <p id="cart-summary" class="font-headline-lg-mobile text-lg font-bold">0 item — Rp 0</p>
+    </div>
+    <button onclick="clearCart()" class="text-on-surface-variant font-label-sm text-label-sm underline">Hapus</button>
+  </div>
+  <button onclick="checkout()" class="w-full bg-on-background text-white border-thick rounded-xl py-3 font-bold font-label-sm block-shadow active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all text-sm">
+    💳 Bayar Sekarang
+  </button>
+</div>
+
+<!-- Bottom Nav -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 bg-surface border-t-[3px] border-on-background z-50">
+  <a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
+    <span class="material-symbols-outlined">home</span>
+    <span class="font-label-sm text-label-sm">Home</span>
+  </a>
+  <a href="inventaris.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
+    <span class="material-symbols-outlined">inventory_2</span>
+    <span class="font-label-sm text-label-sm">Stok</span>
+  </a>
+  <a href="pos.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl border-thick px-4 py-1 translate-y-[-4px] shadow-[4px_4px_0_0_rgba(0,0,0,1)] scale-90">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">point_of_sale</span>
+    <span class="font-label-sm text-label-sm font-bold">POS</span>
+  </a>
+  <a href="laporan.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
+    <span class="material-symbols-outlined">assessment</span>
+    <span class="font-label-sm text-label-sm">Laporan</span>
+  </a>
+  <a href="profil.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
+    <span class="material-symbols-outlined">person</span>
+    <span class="font-label-sm text-label-sm">Profil</span>
+  </a>
+</nav>
+
+<script>
+  const API_URL = 'https://script.google.com/macros/s/AKfycbzTZuYOtZKjIdzBnTxuiz59wT0BExxIM-MALrd8uSMC9l5luUYtgsYHbfgfewCMufFJzg/exec';
+
+  let cart = [];
+
+  // ── Muat produk dari Google Sheets ──────────────────────────────────────
+  async function loadProducts() {
+    const grid = document.getElementById('product-grid');
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error('Respons server tidak OK');
+      const products = await res.json();
+
+      if (!products.length) {
+        grid.innerHTML = `<div class="col-span-2 bg-surface border-thick block-shadow rounded-xl p-6 text-center">
+          <p class="font-speech-bubble text-sm italic text-on-surface-variant">Belum ada produk di Google Sheets.</p>
+        </div>`;
+        return;
+      }
+
+      // Karakter manga berdasarkan kata kunci nama barang
+      function getMangaChar(nama) {
+        const n = nama.toLowerCase();
+        if (n.includes('mie') || n.includes('indomie') || n.includes('ramen'))
+          return { emoji: '🍜', label: 'SLURP!', bg: 'bg-tertiary-container', lines: '#f9c2cc' };
+        if (n.includes('beras') || n.includes('nasi') || n.includes('rice'))
+          return { emoji: '🌾', label: 'ZING!', bg: 'bg-secondary-container', lines: '#fcd400' };
+        if (n.includes('minyak') || n.includes('goreng') || n.includes('oil'))
+          return { emoji: '🫙', label: 'WOOSH!', bg: 'bg-primary-container', lines: '#a7d8f0' };
+        if (n.includes('gula') || n.includes('sugar'))
+          return { emoji: '🍬', label: 'SWEET!', bg: 'bg-tertiary-container', lines: '#f9c2cc' };
+        if (n.includes('kopi') || n.includes('coffee') || n.includes('teh') || n.includes('tea'))
+          return { emoji: '☕', label: 'BZZT!', bg: 'bg-secondary-container', lines: '#fcd400' };
+        if (n.includes('sabun') || n.includes('deterjen') || n.includes('cuci'))
+          return { emoji: '🧼', label: 'SPLASH!', bg: 'bg-primary-container', lines: '#a7d8f0' };
+        if (n.includes('susu') || n.includes('milk'))
+          return { emoji: '🥛', label: 'POW!', bg: 'bg-tertiary-container', lines: '#f9c2cc' };
+        if (n.includes('snack') || n.includes('keripik') || n.includes('biskuit'))
+          return { emoji: '🍪', label: 'CRUNCH!', bg: 'bg-secondary-container', lines: '#fcd400' };
+        if (n.includes('air') || n.includes('minuman') || n.includes('drink'))
+          return { emoji: '💧', label: 'SPLASH!', bg: 'bg-primary-container', lines: '#a7d8f0' };
+        // default
+        const defaults = [
+          { emoji: '⚡', label: 'ZAP!',   bg: 'bg-secondary-container', lines: '#fcd400' },
+          { emoji: '🌟', label: 'BOOM!',  bg: 'bg-primary-container',   lines: '#a7d8f0' },
+          { emoji: '🔥', label: 'HOT!',   bg: 'bg-tertiary-container',  lines: '#f9c2cc' },
+          { emoji: '💥', label: 'POW!',   bg: 'bg-secondary-container', lines: '#fcd400' },
+        ];
+        return defaults[Math.floor(Math.random() * defaults.length)];
+      }
+
+      grid.innerHTML = products.map((p) => {
+        const ch = getMangaChar(p.Nama_Barang);
+        return `
+        <div class="bg-surface border-thick block-shadow rounded-xl p-3 flex flex-col gap-2 relative overflow-hidden">
+          <div class="absolute inset-0 halftone-bg pointer-events-none"></div>
+
+          <!-- Thumbnail manga karakter -->
+          <div class="w-full h-28 ${ch.bg} border-thick rounded-lg overflow-hidden relative z-10 flex items-center justify-center" style="background-image: repeating-linear-gradient(45deg, ${ch.lines}33 0px, transparent 0px, transparent 6px, ${ch.lines}33 6px, transparent 7px);">
+            <!-- Speed lines dekoratif -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none" style="background:radial-gradient(ellipse at center, transparent 30%, ${ch.lines}22 100%)"></div>
+            <!-- Label action word -->
+            <div class="absolute top-1 right-1 bg-on-background text-white font-label-sm text-[9px] font-black italic px-1.5 py-0.5 border-[2px] border-on-background" style="transform:rotate(8deg);box-shadow:2px 2px 0 0 ${ch.lines};">${ch.label}</div>
+            <!-- Karakter emoji besar -->
+            <span class="text-5xl drop-shadow-lg select-none" style="filter:drop-shadow(2px 3px 0px rgba(0,0,0,0.5));transform:rotate(-5deg) scale(1.1);">${ch.emoji}</span>
+          </div>
+
+          <p class="font-bold font-speech-bubble text-sm relative z-10 leading-tight">${p.Nama_Barang}</p>
+          <p class="font-label-sm text-label-sm text-primary relative z-10">Rp ${Number(p.Harga_Jual).toLocaleString('id-ID')}</p>
+          <p class="font-label-sm text-[10px] text-on-surface-variant relative z-10">Stok: ${p.Stok_Tersedia}</p>
+          <button
+            onclick="addItem('${p.Nama_Barang.replace(/'/g, "\\'")}', ${p.Harga_Jual}, '${p.ID_Barang}')"
+            ${Number(p.Stok_Tersedia) <= 0 ? 'disabled' : ''}
+            class="w-full bg-primary text-on-primary border-thick rounded-lg py-1.5 font-label-sm text-label-sm block-shadow-sm active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+            ${Number(p.Stok_Tersedia) <= 0 ? 'Habis' : '+ Tambah'}
+          </button>
+        </div>`;
+      }).join('');
+
+    } catch (err) {
+      grid.innerHTML = `<div class="col-span-2 bg-error-container border-thick block-shadow rounded-xl p-5">
+        <p class="font-speech-bubble text-sm font-bold text-on-error-container">⚠️ Gagal memuat produk: ${err.message}</p>
+        <button onclick="loadProducts()" class="mt-3 bg-surface border-thick border-on-background px-4 py-1.5 font-label-sm text-label-sm block-shadow-sm">Coba Lagi</button>
+      </div>`;
+    }
+  }
+
+  // ── Keranjang ─────────────────────────────────────────────────────────────
+  function addItem(name, price, id) {
+    const existing = cart.find(i => i.id === id);
+    if (existing) existing.qty++;
+    else cart.push({ id, name, price: Number(price), qty: 1 });
+    updateCart();
+  }
+
+  function clearCart() {
+    cart = [];
+    updateCart();
+  }
+
+  function updateCart() {
+    const bar     = document.getElementById('cart-bar');
+    const summary = document.getElementById('cart-summary');
+    const totalQty   = cart.reduce((s, i) => s + i.qty, 0);
+    const totalPrice = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    if (totalQty === 0) {
+      bar.classList.add('hidden');
+    } else {
+      bar.classList.remove('hidden');
+      summary.textContent = `${totalQty} item — Rp ${totalPrice.toLocaleString('id-ID')}`;
+    }
+  }
+
+  // ── Checkout — POST ke Google Sheets ────────────────────────────────────
+  async function checkout() {
+    if (!cart.length) return;
+
+    const btn = document.querySelector('#cart-bar button[onclick="checkout()"]');
+    btn.disabled = true;
+    btn.textContent = '⏳ Memproses...';
+
+    try {
+      // Petakan ulang cart ke format yang diharapkan backend
+      const payload = cart.map(item => ({
+        id:    item.id,
+        nama:  item.name,
+        qty:   item.qty,
+        total: item.price * item.qty
+      }));
+
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' }, // GAS Web App butuh text/plain agar tidak trigger preflight
+        body: JSON.stringify({ cart: payload })
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      // Notifikasi sukses dalam gaya manga
+      showNotif('✅ Transaksi Berhasil!\nCha-ching! 💰', 'success');
+      clearCart();
+
+    } catch (err) {
+      showNotif(`⚠️ Gagal: ${err.message}`, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '💳 Bayar Sekarang';
+    }
+  }
+
+  // ── Toast notifikasi manga-style ────────────────────────────────────────
+  function showNotif(msg, type) {
+    const existing = document.getElementById('manga-notif');
+    if (existing) existing.remove();
+
+    const el = document.createElement('div');
+    el.id = 'manga-notif';
+    el.className = `fixed top-24 left-4 right-4 z-[999] border-[3px] border-on-background rounded-2xl p-4 shadow-[4px_4px_0_0_rgba(0,0,0,1)] transform transition-all duration-300 translate-y-0 ${type === 'success' ? 'bg-secondary-container' : 'bg-error-container'}`;
+    el.innerHTML = `<p class="font-speech-bubble text-sm font-bold italic whitespace-pre-line">${msg}</p>`;
+    document.body.appendChild(el);
+
+    setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(-16px)'; }, 2500);
+    setTimeout(() => el.remove(), 3000);
+  }
+
+  // Muat produk saat halaman dibuka
+  loadProducts();
+</script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Laporan Performa - MISYOPOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Metrophobic&amp;family=Comfortaa:wght@300;500;700&amp;family=Bricolage+Grotesque:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#f0eded",
+                    "secondary-fixed": "#ffe16d",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#164c60",
+                    "on-primary-container": "#2d5f74",
+                    "tertiary-fixed": "#ffd9df",
+                    "secondary-container": "#fcd400",
+                    "on-tertiary-fixed-variant": "#812240",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#221b00",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb1c1",
+                    "on-tertiary-fixed": "#3f0017",
+                    "inverse-on-surface": "#f3f0ef",
+                    "primary-fixed": "#bde9ff",
+                    "on-tertiary-container": "#9a3652",
+                    "error": "#ba1a1a",
+                    "surface": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e5e2e1",
+                    "surface-variant": "#e5e2e1",
+                    "on-secondary-container": "#6e5c00",
+                    "surface-dim": "#dcd9d9",
+                    "secondary": "#705d00",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#336479",
+                    "surface-bright": "#fcf9f8",
+                    "tertiary-container": "#ffc1cc",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#9dcde5",
+                    "secondary-fixed-dim": "#e9c400",
+                    "on-background": "#1c1b1b",
+                    "surface-container-high": "#eae7e7",
+                    "primary-container": "#a7d8f0",
+                    "on-secondary": "#ffffff",
+                    "outline": "#71787c",
+                    "on-surface": "#1c1b1b",
+                    "on-primary-fixed": "#001f2a",
+                    "primary": "#336479",
+                    "outline-variant": "#c0c7cc",
+                    "on-surface-variant": "#41484c",
+                    "inverse-surface": "#313030",
+                    "surface-container-low": "#f6f3f2",
+                    "on-secondary-fixed-variant": "#544600",
+                    "background": "#fcf9f8",
+                    "tertiary": "#a03a57",
+                    "primary-fixed-dim": "#9dcde5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "safe-margin": "20px",
+                    "panel-gap": "12px",
+                    "internal-padding": "16px",
+                    "border-thick": "4px",
+                    "border-thin": "1.5px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Metrophobic"],
+                    "body-md": ["Comfortaa"],
+                    "label-sm": ["Bricolage Grotesque"],
+                    "headline-lg": ["Metrophobic"],
+                    "headline-lg-mobile": ["Metrophobic"],
+                    "speech-bubble": ["Comfortaa"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "speech-bubble": ["14px", {"lineHeight": "18px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .halftone-bg {
+        background-image: radial-gradient(#1c1b1b 15%, transparent 16%);
+        background-size: 6px 6px;
+        opacity: 0.1;
+      }
+      .marker-fill {
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
+      }
+      .speech-bubble-tail {
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+      }
+      .manga-panel {
+        box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+      }
+      .comic-active-shadow {
+        box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+      }
+      .impact-line {
+        position: absolute;
+        background: black;
+        width: 2px;
+        height: 20px;
+        opacity: 0.6;
+      }
+      body {
+        cursor: url('https://fonts.gstatic.com/s/i/materialicons/mouse/v6/24px.svg'), auto;
+      }
+      .hand-drawn-border {
+        border-style: solid;
+        border-width: 3px;
+        border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 5 Q 50 2 95 5 Q 98 50 95 95 Q 50 98 5 95 Q 2 50 5 5' stroke='black' stroke-width='4' fill='none'/%3E%3C/svg%3E") 20 stretch;
+      }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface selection:bg-secondary-container">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky border-b-thick border-on-background bg-surface z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-between px-safe-margin py-internal-padding">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 border-thick border-on-background rounded-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="A stylized manga-style character illustration of a shop manager wearing a professional apron, with high-contrast ink outlines and soft pastel shading. The background features a subtle halftone pattern in light blue, and the character has an energetic, friendly expression suitable for a POS dashboard avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzBHVC2Ei8cKRDHZs-OuObNRksxotaKo4ZKcErQlgJyKVjZv4T2mSp-bea3XgdMNuLfeRRmi5iYyiZvlRU9PlkQqwMCLJY75hrII9b5CepiyliyxRqLn400MsrCbBItOYI_UCvKyLv7BZHtWrb10BQE_jk37-glPj_0OU7fQSwQTt1bJVMiGXN_UikvFoxRcPh8nsPPBqEaW48dxBz6g21NNFZ2z3JrehRDcKIAip1_RM9OmQZJNM8Q8NGMLXL3Ys7mDV7r05Upg4oaw"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary italic">Laporan Performa</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center border-thick border-on-background rounded-lg bg-surface active:translate-x-[2px] active:translate-y-[2px] active:shadow-none manga-panel transition-all">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</header>
+<main class="px-safe-margin pt-8 pb-32 space-y-8 max-w-md mx-auto">
+<!-- Segmented Control -->
+<section class="flex p-1 border-thick border-on-background bg-surface-container rounded-xl manga-panel">
+<button class="flex-1 py-3 font-label-sm text-label-sm border-thick border-on-background bg-secondary-container text-on-secondary-container rounded-lg comic-active-shadow transform -rotate-1">
+                Hari Ini
+            </button>
+<button class="flex-1 py-3 font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors">
+                Minggu Ini
+            </button>
+</section>
+<!-- Main Chart Panel -->
+<section class="relative bg-primary-fixed-dim border-[4px] border-on-background rounded-2xl p-internal-padding manga-panel overflow-hidden">
+<div class="absolute inset-0 halftone-bg opacity-20"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-sm text-label-sm text-primary mb-1 font-bold">Total Penjualan</p>
+<h2 class="font-headline-xl text-headline-xl font-black text-on-background">Rp 12.450k</h2>
+</div>
+<div class="bg-tertiary-container border-thick border-on-background px-3 py-1 rounded-full flex items-center gap-1 -rotate-3 manga-panel relative">
+<span class="font-label-sm text-label-sm text-on-tertiary-container italic font-black">Cha-ching!</span>
+</div>
+</div>
+<!-- Stylized Bar Chart -->
+<div class="h-48 flex items-end justify-between gap-2 mt-4 pb-2 border-b-[4px] border-on-background relative">
+<!-- Sound Effect -->
+<div class="absolute -top-6 -right-2 bg-secondary-container border-thick border-on-background px-2 py-0.5 rounded rotate-12 manga-panel z-20">
+<span class="font-label-sm text-[10px] font-black italic">WOW!</span>
+</div>
+<!-- Bars -->
+<div class="relative w-full bg-secondary border-[3px] border-on-background rounded-t-lg h-[40%] transition-all hover:scale-105 group" style="transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+<div class="relative w-full bg-primary border-[3px] border-on-background rounded-t-lg h-[65%] transition-all hover:scale-105 group" style="transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+<div class="relative w-full bg-tertiary border-[3px] border-on-background rounded-t-lg h-[35%] transition-all hover:scale-105 group" style="transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+<div class="relative w-full bg-secondary border-[3px] border-on-background rounded-t-lg h-[85%] transition-all hover:scale-105 group" style="transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+<div class="relative w-full bg-primary border-[3px] border-on-background rounded-t-lg h-[55%] transition-all hover:scale-105 group" style="transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s;">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+<!-- Highest Bar with Impact Effects -->
+<div class="relative w-full bg-secondary border-[3px] border-on-background rounded-t-lg h-[95%] transition-all hover:scale-105 group" style="transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+<div class="absolute -top-4 -left-2 impact-line rotate-45"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 impact-line w-0.5 h-4"></div>
+<div class="absolute -top-4 -right-2 impact-line -rotate-45"></div>
+</div>
+<div class="relative w-full bg-tertiary border-[3px] border-on-background rounded-t-lg h-[75%] transition-all hover:scale-105 group" style="transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s;">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+</div>
+<div class="flex justify-between font-label-sm text-[11px] text-on-surface font-black italic tracking-tighter mt-1">
+<span class="-rotate-12">SEN</span><span class="rotate-6">SEL</span><span class="-rotate-6">RAB</span><span class="rotate-3">KAM</span><span class="-rotate-3">JUM</span><span class="rotate-12">SAB</span><span class="-rotate-12 text-tertiary">MIN</span>
+</div>
+</div>
+</section>
+<!-- Summary Grid -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Total Transaksi -->
+<div class="bg-white border-thick border-on-background rounded-2xl p-4 manga-panel relative overflow-hidden flex flex-col justify-center items-center text-center gap-2">
+<div class="absolute inset-0 halftone-bg opacity-5 pointer-events-none"></div>
+<div class="w-12 h-12 rounded-full border-thick border-on-background bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed">point_of_sale</span>
+</div>
+<div>
+<h3 class="font-label-sm text-label-sm text-outline font-bold">Transaksi</h3>
+<p class="font-headline-lg text-headline-lg font-black italic">128</p>
+</div>
+</div>
+<!-- Pelanggan Baru -->
+<div class="bg-white border-thick border-on-background rounded-2xl p-4 manga-panel relative overflow-hidden flex flex-col justify-center items-center text-center gap-2">
+<div class="absolute inset-0 halftone-bg opacity-5 pointer-events-none"></div>
+<div class="w-12 h-12 rounded-full border-thick border-on-background bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed">group_add</span>
+</div>
+<div>
+<h3 class="font-label-sm text-label-sm text-outline font-bold">Baru</h3>
+<p class="font-headline-lg text-headline-lg font-black italic">15</p>
+</div>
+<!-- Mini Sticker Overlay -->
+<div class="absolute -top-1 -right-1 bg-primary text-on-primary font-label-sm text-[10px] px-2 py-0.5 border-[3px] border-on-background rotate-12 font-black italic">
+                    BOOM!
+                </div>
+</div>
+</section>
+<!-- Categories List -->
+<section class="bg-surface border-thick border-on-background rounded-2xl p-internal-padding manga-panel relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-10 rotate-12">
+<span class="material-symbols-outlined text-7xl font-bold">trending_up</span>
+</div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">local_fire_department</span>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile font-black italic">Kategori Terlaris</h3>
+</div>
+<div class="space-y-6 relative z-10">
+<!-- Item 1 -->
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm font-bold">
+<span class="">Mie Instan</span>
+<span class="text-primary font-black italic">85%</span>
+</div>
+<div class="h-7 border-[4px] border-on-background bg-surface-container rounded-lg overflow-hidden flex p-0.5 relative">
+<div class="h-full bg-secondary-container border-r-[4px] border-on-background rounded-sm relative overflow-hidden" style="width: 85%">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm font-bold">
+<span class="">Minyak Goreng</span>
+<span class="text-primary font-black italic">62%</span>
+</div>
+<div class="h-7 border-[4px] border-on-background bg-surface-container rounded-lg overflow-hidden flex p-0.5 relative">
+<div class="h-full bg-primary-container border-r-[4px] border-on-background rounded-sm relative overflow-hidden" style="width: 62%">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm font-bold">
+<span class="">Beras</span>
+<span class="text-primary font-black italic">48%</span>
+</div>
+<div class="h-7 border-[4px] border-on-background bg-surface-container rounded-lg overflow-hidden flex p-0.5 relative">
+<div class="h-full bg-tertiary-container border-r-[4px] border-on-background rounded-sm relative overflow-hidden" style="width: 48%">
+<div class="absolute inset-0 halftone-bg opacity-30 marker-fill"></div>
+</div>
+<div class="absolute -right-2 -top-4 bg-tertiary text-on-tertiary px-1 py-0.5 rounded border-2 border-on-background rotate-12 scale-75 z-20 font-black italic text-[8px]">POP!</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Highlight Speech Bubble -->
+<section class="relative py-4">
+<div class="bg-on-background text-white p-5 rounded-3xl border-thick border-on-background relative manga-panel">
+<p class="font-speech-bubble text-speech-bubble italic leading-relaxed">
+                    "Kerja bagus! Penjualan kamu naik 12% dibandingkan minggu lalu. Yuk, pertahankan stok barang favorit pelanggan!"
+                </p>
+<!-- Bubble Tail -->
+<div class="absolute -top-4 right-12 w-6 h-6 bg-on-background speech-bubble-tail transform rotate-180"></div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 border-t-thick border-on-background bg-surface flex justify-around items-center px-2 py-3 pb-safe-margin shadow-[0_-4px_0px_0px_rgba(0,0,0,1)] bg-[url('https://www.transparenttextures.com/patterns/halftone.png')]">
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a href="inventaris.html" class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-sm text-label-sm">Stok</span>
+</a>
+<a href="pos.html" class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">point_of_sale</span>
+<span class="font-label-sm text-label-sm">POS</span>
+</a>
+<a href="laporan.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container border-thick border-on-background rounded-lg px-3 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>analytics</span>
+<span class="font-label-sm text-label-sm font-bold">Laporan</span>
+</a>
+<a href="profil.html" class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-sm text-label-sm">Profil</span>
+</a>
+</nav>
+<script>
+        // Simple animation for bars on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.h-48 .relative.w-full');
+            bars.forEach((bar, index) => {
+                const targetHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.transition = `height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.1}s`;
+                    bar.style.height = targetHeight;
+                }, 100);
+            });
+        });
+
+        // Toggle interaction
+        const toggleButtons = document.querySelectorAll('section > button');
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                toggleButtons.forEach(b => {
+                    b.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'comic-active-shadow', 'transform', '-rotate-1', 'border-thick', 'border-on-background');
+                    b.classList.add('text-on-surface-variant');
+                });
+                btn.classList.add('bg-secondary-container', 'text-on-secondary-container', 'comic-active-shadow', 'transform', '-rotate-1', 'border-thick', 'border-on-background');
+                btn.classList.remove('text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

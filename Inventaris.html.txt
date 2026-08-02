@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Inventaris Barang - Manga Style</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;family=Metrophobic&amp;family=Bricolage+Grotesque:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#2d5f74",
+                        "on-surface-variant": "#41484c",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#a03a57",
+                        "inverse-surface": "#313030",
+                        "surface-tint": "#336479",
+                        "primary-fixed": "#bde9ff",
+                        "on-tertiary-container": "#9a3652",
+                        "outline-variant": "#c0c7cc",
+                        "surface-container-highest": "#e5e2e1",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-primary-fixed-variant": "#164c60",
+                        "on-background": "#1c1b1b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#812240",
+                        "background": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "surface-dim": "#dcd9d9",
+                        "secondary-container": "#fcd400",
+                        "secondary": "#705d00",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#544600",
+                        "primary-container": "#a7d8f0",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffe16d",
+                        "surface": "#fcf9f8",
+                        "on-surface": "#1c1b1b",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#9dcde5",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffd9df",
+                        "outline": "#71787c",
+                        "on-secondary-container": "#6e5c00",
+                        "surface-variant": "#e5e2e1",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-fixed-dim": "#e9c400",
+                        "primary": "#336479",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed-dim": "#ffb1c1",
+                        "inverse-primary": "#9dcde5",
+                        "on-secondary-fixed": "#221b00",
+                        "tertiary-container": "#ffc1cc",
+                        "surface-container-high": "#eae7e7",
+                        "on-tertiary-fixed": "#3f0017",
+                        "on-primary-fixed": "#001f2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "border-thick": "3px",
+                        "internal-padding": "16px",
+                        "border-thin": "1.5px",
+                        "panel-gap": "12px",
+                        "safe-margin": "20px"
+                    },
+                    "fontFamily": {
+                        "speech-bubble": ["Comfortaa"],
+                        "headline-lg-mobile": ["Metrophobic"],
+                        "label-sm": ["Bricolage Grotesque"],
+                        "headline-lg": ["Metrophobic"],
+                        "headline-xl": ["Metrophobic"],
+                        "body-md": ["Comfortaa"]
+                    },
+                    "fontSize": {
+                        "speech-bubble": ["14px", {"lineHeight": "18px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "headline-lg": ["28px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .manga-panel {
+            border: 3px solid #1c1b1b;
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .halftone-bg {
+            background-image: radial-gradient(#1c1b1b 1px, transparent 1px);
+            background-size: 8px 8px;
+            opacity: 0.1;
+        }
+        .comic-sticker {
+            transform: rotate(-5deg);
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+            border: 2px solid #1c1b1b;
+        }
+        .speech-bubble-tip::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #1c1b1b;
+        }
+        .border-t-thick { border-top-width: 3px; }
+        .border-b-thick { border-bottom-width: 3px; }
+        .border-on-background { border-color: #1c1b1b; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background border-b-thick border-on-background px-4 py-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-background">menu</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight">Inventaris Barang</h1>
+</div>
+<span class="material-symbols-outlined text-on-background">calendar_month</span>
+</header>
+<main class="pt-20 px-4 space-y-6">
+<!-- Weekly Calendar Panel -->
+<section class="manga-panel bg-primary-container p-4 rounded-xl mt-4">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-sm text-label-sm bg-background border-thin border-on-background px-3 py-1 rounded-full">September 2023</span>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-on-background"></div>
+<div class="w-2 h-2 rounded-full bg-on-background/40"></div>
+</div>
+</div>
+<div class="flex justify-between gap-1">
+<!-- Days Strip -->
+<div class="flex flex-col items-center bg-background border-thin border-on-background p-2 rounded-lg w-10">
+<span class="font-label-sm text-[10px]">Mon</span>
+<span class="font-bold">20</span>
+</div>
+<div class="flex flex-col items-center bg-secondary-container border-thick border-on-background p-2 rounded-lg w-12 shadow-[2px_2px_0_0_rgba(0,0,0,1)] -translate-y-1">
+<span class="font-label-sm text-[10px]">Tue</span>
+<span class="font-bold">21</span>
+</div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
+<span class="font-label-sm text-[10px]">Wed</span>
+<span class="font-bold">22</span>
+</div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
+<span class="font-label-sm text-[10px]">Thu</span>
+<span class="font-bold">23</span>
+</div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
+<span class="font-label-sm text-[10px]">Fri</span>
+<span class="font-bold">24</span>
+</div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
+<span class="font-label-sm text-[10px]">Sat</span>
+<span class="font-bold">25</span>
+</div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
+<span class="font-label-sm text-[10px]">Sun</span>
+<span class="font-bold text-error">26</span>
+</div>
+</div>
+</section>
+<!-- Inventory List -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold">Barang</h2>
+<div class="bg-secondary p-1 border-thin border-on-background rounded-lg text-on-secondary font-label-sm text-xs">
+                    *Zzzzt!*
+                </div>
+</div>
+<!-- Dynamic product list injected by JS -->
+<div id="product-list">
+  <!-- Loading state -->
+  <div id="inventaris-loading" class="manga-panel bg-surface p-6 rounded-xl flex flex-col items-center gap-3">
+    <div class="w-10 h-10 border-[3px] border-primary border-t-transparent rounded-full animate-spin"></div>
+    <p class="font-speech-bubble text-sm italic text-on-surface-variant">Memuat data dari Google Sheets...</p>
+  </div>
+</div>
+</section>
+<!-- Best Seller Section -->
+<section class="manga-panel bg-secondary-container p-5 rounded-2xl relative">
+<div class="absolute top-[-15px] right-[20px] comic-sticker bg-white px-4 py-1 font-bold text-sm transform rotate-6 border-thick border-on-background">
+                Cha-ching! 💰
+            </div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile font-bold mb-4">Produk Terlaris Minggu Ini</h3>
+<div class="bg-background border-thick border-on-background rounded-xl p-4 flex items-center gap-4 shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+<div class="relative w-20 h-20 flex-shrink-0">
+<div class="absolute -top-2 -left-2 bg-on-secondary-fixed text-white p-1 rounded-full border-thin border-on-background z-20">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</div>
+<img alt="Manga-style instant noodles pack" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS8-PfnwCCh7rWW4ygR1IavSEevvRtFxsnxjd_BDYziG1Z7EpJupk2ZDKnGZ90H2EInM2PRB9UyvGrFAZr7QkI0GyjYY_9OBaQJZ36LqFJE5Q72hwUnm7C1svto3f0kZS-oC9bssQOmkPs-VGInWTrBKJ8yhEjIPWsiowlXVu9rH0rAsZpMcMvjvx8f5YBSyfszUyfHDQSk6Hhf9YA0ZkulLmt7sNzJaQIjY0-XwisS0fcQ8FyvoAH"/>
+</div>
+<div>
+<p class="font-headline-lg text-headline-lg font-bold leading-tight">Indomie Goreng</p>
+<p class="font-speech-bubble text-primary font-bold mt-1">150 Pcs Terjual!</p>
+<div class="mt-2 flex gap-1">
+<div class="h-2 w-12 bg-primary rounded border-thin border-on-background"></div>
+<div class="h-2 w-8 bg-primary/40 rounded border-thin border-on-background"></div>
+<div class="h-2 w-4 bg-primary/20 rounded border-thin border-on-background"></div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-start gap-2">
+<div class="w-8 h-8 rounded-full bg-background border-thin border-on-background flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">lightbulb</span>
+</div>
+<div class="bg-background border-thin border-on-background p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl speech-bubble-tip relative">
+<p class="font-speech-bubble text-xs italic">"Sok lengkap hari ini, pelanggan senang besok."</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 bg-surface border-t-thick border-on-background z-50">
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a href="inventaris.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl border-thick border-on-background px-4 py-1 translate-y-[-4px] shadow-[4px_4px_0_0_rgba(0,0,0,1)] scale-90 duration-75">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-sm text-label-sm font-bold">Stok</span>
+</a>
+<a href="pos.html" class="flex items-center justify-center bg-primary text-on-primary w-14 h-14 rounded-full border-thick border-on-background shadow-[4px_4px_0_0_rgba(0,0,0,1)] -translate-y-6 hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-3xl" data-icon="add_box">add_box</span>
+</a>
+<a href="laporan.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-label-sm text-label-sm">Laporan</span>
+</a>
+<a href="profil.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profil</span>
+</a>
+</nav>
+<script>
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzTZuYOtZKjIdzBnTxuiz59wT0BExxIM-MALrd8uSMC9l5luUYtgsYHbfgfewCMufFJzg/exec';
+
+    async function loadInventaris() {
+      const list = document.getElementById('product-list');
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error('Gagal mengambil data');
+        const products = await res.json();
+
+        if (!products.length) {
+          list.innerHTML = `<div class="manga-panel bg-surface p-6 rounded-xl text-center">
+            <p class="font-speech-bubble text-sm italic text-on-surface-variant">Belum ada produk di Google Sheets.</p>
+          </div>`;
+          return;
+        }
+
+        list.innerHTML = products.map(p => {
+          const isLow = Number(p.Stok_Tersedia) <= 5;
+          return `
+          <div class="manga-panel bg-surface p-3 rounded-xl flex items-center gap-4 group hover:bg-surface-container transition-all">
+            <div class="w-16 h-16 border-thick border-on-background rounded-lg bg-surface-container overflow-hidden flex-shrink-0 flex items-center justify-center">
+              <span class="material-symbols-outlined text-3xl text-on-surface-variant">inventory_2</span>
+            </div>
+            <div class="flex-grow">
+              <p class="font-bold font-speech-bubble">${p.Nama_Barang}</p>
+              <p class="font-label-sm text-[11px] text-on-surface-variant mt-0.5">Rp ${Number(p.Harga_Jual).toLocaleString('id-ID')}</p>
+              <div class="flex items-center gap-2 mt-1">
+                ${isLow
+                  ? `<span class="material-symbols-outlined text-error text-sm" style="font-variation-settings:'FILL' 1;">warning</span>
+                     <span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded border-thin border-on-background">STOK RENDAH</span>`
+                  : `<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                     <span class="bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded border-thin border-on-background">AMAN</span>`
+                }
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-label-sm text-[10px] text-on-surface-variant">Sisa ${p.Stok_Tersedia}</p>
+              ${isLow ? `<div class="comic-sticker bg-secondary-container px-2 py-1 text-[10px] font-extrabold mt-1">PESAN!</div>` : ''}
+            </div>
+          </div>`;
+        }).join('');
+
+        // Re-attach sticker micro-interactions
+        document.querySelectorAll('.comic-sticker').forEach(sticker => {
+          sticker.addEventListener('mouseenter', () => sticker.style.transform = 'rotate(0deg) scale(1.1)');
+          sticker.addEventListener('mouseleave', () => sticker.style.transform = 'rotate(-5deg)');
+        });
+
+      } catch (err) {
+        list.innerHTML = `<div class="manga-panel bg-error-container p-5 rounded-xl border-thick border-on-background">
+          <p class="font-speech-bubble text-sm font-bold text-on-error-container">⚠️ Gagal memuat data: ${err.message}</p>
+          <button onclick="loadInventaris()" class="mt-3 bg-surface border-thick border-on-background px-4 py-1.5 font-label-sm text-label-sm block-shadow-sm">Coba Lagi</button>
+        </div>`;
+      }
+    }
+
+    loadInventaris();
+</script>
+</body></html>

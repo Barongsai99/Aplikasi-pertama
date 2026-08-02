@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Mitra Warung - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Metrophobic&amp;family=Comfortaa:wght@500;700&amp;family=Bricolage+Grotesque:wght@700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .border-thick { border-width: 3px; border-style: solid; border-color: #1c1b1b; }
+        .border-thin { border-width: 1.5px; border-style: solid; border-color: #1c1b1b; }
+        .block-shadow { box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); }
+        .block-shadow-sm { box-shadow: 2px 2px 0px 0px rgba(0,0,0,1); }
+        
+        .halftone-bg {
+            background-image: radial-gradient(#1c1b1b 1px, transparent 0);
+            background-size: 8px 8px;
+            opacity: 0.1;
+        }
+
+        .speech-bubble-tail::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #1c1b1b;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#812240",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fcf9f8",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-container": "#9a3652",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#3f0017",
+                        "surface-dim": "#dcd9d9",
+                        "on-secondary-fixed-variant": "#544600",
+                        "tertiary": "#a03a57",
+                        "surface-tint": "#336479",
+                        "secondary-fixed": "#ffe16d",
+                        "primary-fixed": "#bde9ff",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-container": "#fcd400",
+                        "inverse-primary": "#9dcde5",
+                        "on-secondary-container": "#6e5c00",
+                        "on-primary-container": "#2d5f74",
+                        "primary-fixed-dim": "#9dcde5",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#a7d8f0",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-container": "#f0eded",
+                        "on-surface": "#1c1b1b",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001f2a",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eae7e7",
+                        "error": "#ba1a1a",
+                        "primary": "#336479",
+                        "inverse-surface": "#313030",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-primary-fixed-variant": "#164c60",
+                        "tertiary-container": "#ffc1cc",
+                        "secondary": "#705d00",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-surface-variant": "#41484c",
+                        "tertiary-fixed-dim": "#ffb1c1",
+                        "outline": "#71787c",
+                        "tertiary-fixed": "#ffd9df",
+                        "surface-container-low": "#f6f3f2",
+                        "outline-variant": "#c0c7cc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "safe-margin": "20px",
+                        "border-thin": "1.5px",
+                        "panel-gap": "12px",
+                        "border-thick": "3px",
+                        "internal-padding": "16px"
+                    },
+                    "fontFamily": {
+                        "speech-bubble": ["Comfortaa"],
+                        "headline-xl": ["Metrophobic"],
+                        "headline-lg": ["Metrophobic"],
+                        "label-sm": ["Bricolage Grotesque"],
+                        "headline-lg-mobile": ["Metrophobic"],
+                        "body-md": ["Comfortaa"]
+                    },
+                    "fontSize": {
+                        "speech-bubble": ["14px", { "lineHeight": "18px", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-inverse-surface border-b-thick border-on-surface dark:border-on-surface-variant shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sticky top-0 z-40 flex justify-between items-center w-full px-safe-margin py-internal-padding">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 border-thick rounded-full overflow-hidden block-shadow-sm bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="A vibrant Japanese manga-style profile illustration of a friendly shop owner character with big expressive eyes and spiky hair, rendered in high-contrast ink lines with a soft blue and white color palette, typical of modern shonen manga art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGco3YhXmEZ5qJO4zhy4eOybi3Aq05qo6DdYK4g_es3CRWM-WynCodxaaU_PGwmmnqQJH7Lp3Y5PoocwpWQ_Kd6avzC0A0GI8geQLU5wHDFUyEhyewt-vUIRGMT692kvl-Ycyb6mPwSNuZcPxRZI6MVef6ta1HlfOUPal0vQ-EPAAQfwPwPC_-eYL176l2wBBLDHvbHpfqHwHZb0yT_ev_-IxXtsonBIcK8EgllEzFglTh4qGJs_c1YTDVfvzf3ktNywOoWPQBgdhKow"/>
+</div>
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Mitra Warung</h1>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-primary-container dark:hover:bg-primary-fixed-variant transition-colors p-2 rounded-lg active:scale-95 transition-transform duration-100" data-icon="notifications">notifications</button>
+</header>
+<main class="px-4 pt-6 space-y-6">
+<!-- Greeting & Target Panel -->
+<section class="space-y-4">
+<div class="flex items-end justify-between">
+<div>
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile">Hai, Ilyasviel! <span class="inline-block animate-bounce">👋</span></h2>
+<p class="text-on-surface-variant font-label-sm">Siap jualan hari ini?</p>
+</div>
+<!-- Manga Speech Bubble UI Alert -->
+<div class="relative bg-secondary-container border-thick px-3 py-1 block-shadow-sm transform rotate-3 animate-float">
+<span class="font-label-sm italic text-on-secondary-container">Cha-ching!</span>
+<div class="absolute -bottom-2 right-4 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-on-surface"></div>
+</div>
+</div>
+<!-- Target Card -->
+<div class="relative bg-surface border-thick block-shadow overflow-hidden">
+<div class="halftone-bg absolute inset-0 pointer-events-none"></div>
+<div class="p-internal-padding relative z-10">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-lg-mobile text-primary">Target Penjualan Hari ini</h3>
+<span class="material-symbols-outlined text-secondary" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-headline-lg font-headline-lg">2.500.000</span>
+<span class="text-on-surface-variant font-label-sm">/ 5.000.000 IDR</span>
+</div>
+<!-- Manga-style Segmented Progress Bar -->
+<div class="flex gap-1 h-6">
+<div class="flex-1 border-thick bg-secondary-fixed"></div>
+<div class="flex-1 border-thick bg-secondary-fixed"></div>
+<div class="flex-1 border-thick bg-secondary-fixed"></div>
+<div class="flex-1 border-thick bg-secondary-fixed"></div>
+<div class="flex-1 border-thick bg-secondary-fixed"></div>
+<div class="flex-1 border-thick bg-surface-variant halftone-bg"></div>
+<div class="flex-1 border-thick bg-surface-variant halftone-bg"></div>
+<div class="flex-1 border-thick bg-surface-variant halftone-bg"></div>
+<div class="flex-1 border-thick bg-surface-variant halftone-bg"></div>
+<div class="flex-1 border-thick bg-surface-variant halftone-bg"></div>
+</div>
+<p class="mt-4 font-speech-bubble italic text-on-primary-fixed-variant bg-primary-container p-2 border-thin inline-block">
+                        "Sok lengkap hari ini, pelanggan senang besok."
+                    </p>
+</div>
+</div>
+</section>
+<!-- Recent Transactions -->
+<section class="space-y-4">
+<div class="flex justify-between items-center px-1">
+<h3 class="font-headline-lg-mobile">Transaksi Terakhir</h3>
+<a href="laporan.html" class="text-primary font-label-sm underline">Lihat Semua</a>
+</div>
+<div class="grid gap-panel-gap">
+<!-- Transaction Item 1 -->
+<div class="bg-surface border-thick block-shadow-sm p-4 flex items-center gap-4 hover:translate-x-1 transition-transform">
+<div class="w-12 h-12 border-thick bg-tertiary-container flex items-center justify-center"><img alt="Indomie Kuah" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS8-PfnwCCh7rWW4ygR1IavSEevvRtFxsnxjd_BDYziG1Z7EpJupk2ZDKnGZ90H2EInM2PRB9UyvGrFAZr7QkI0GyjYY_9OBaQJZ36LqFJE5Q72hwUnm7C1svto3f0kZS-oC9bssQOmkPs-VGInWTrBKJ8yhEjIPWsiowlXVu9rH0rAsZpMcMvjvx8f5YBSyfszUyfHDQSk6Hhf9YA0ZkulLmt7sNzJaQIjY0-XwisS0fcQ8FyvoAH"/></div>
+<div class="flex-1">
+<h4 class="font-bold font-headline-lg-mobile text-[18px]">Indomie Kuah</h4>
+<p class="text-on-surface-variant font-label-sm">1 Karton</p>
+</div>
+<div class="text-right">
+<p class="font-bold font-label-sm">10:30 AM</p>
+<span class="text-[10px] bg-primary-container px-2 py-0.5 border-thin font-bold font-label-sm">Zzzzt!</span>
+</div>
+</div>
+<!-- Transaction Item 2 -->
+<div class="bg-surface border-thick block-shadow-sm p-4 flex items-center gap-4 hover:translate-x-1 transition-transform">
+<div class="w-12 h-12 border-thick bg-secondary-container flex items-center justify-center"><img alt="Beras Ramos" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU5He-vMZCwFKdrquIhwMmOXtTtcAtU0ESANdJNYa1aiOKLNnbpVRAx3cwQpZ4vwu4or7xLqXfVT6Mh2v2qjImCb0eS9P0vHmvNuAUzEWuKjMbCSw4zEKPrKycnA3UD3JFPP2JkguR1KI28jwYe8_Sf6IS33rVMTbDAUCI1-SZlJhBiNHUL83YOBsRS5U-LImq7_pWv6cRGYmtToCXJzqmhzz3jcLxifP5hH0wWjC4kCxkw-01y1PG"/></div>
+<div class="flex-1">
+<h4 class="font-bold font-headline-lg-mobile text-[18px]">Beras Ramos Skg</h4>
+<p class="text-on-surface-variant font-label-sm">2 Karung</p>
+</div>
+<div class="text-right">
+<p class="font-bold font-label-sm">12:15 PM</p>
+<span class="text-[10px] bg-secondary-fixed px-2 py-0.5 border-thin font-bold font-label-sm">Sip!</span>
+</div>
+</div>
+<!-- Transaction Item 3 -->
+<div class="bg-surface border-thick block-shadow-sm p-4 flex items-center gap-4 hover:translate-x-1 transition-transform">
+<div class="w-12 h-12 border-thick bg-primary-container flex items-center justify-center"><img alt="Minyak Bimoli" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqrxT72InYpjUsSeMIRWAcRDXRsgRFutx5BtTgyiAKTq2y5LIR3wkAdaesMEq6jT7SInDj8W-lxPb_dGgC4V1DYasmsMr6siTAT8gqGmvRr9-UJX5Bbf-9iVxQu83Ce9qfIGp-knehq6W61LQtyRIzu_xB6sUnMQoL_mff-tsv4MFbkGEu3Ce6knp7xGXL2bxJ2hXw5AoSzd-60zKYM2Uy-mbN3zsM5kyRAetoh25G_uS7zLmZMz2G"/></div>
+<div class="flex-1">
+<h4 class="font-bold font-headline-lg-mobile text-[18px]">Minyak Bimoli 2L</h4>
+<p class="text-on-surface-variant font-label-sm">1 Pcs</p>
+</div>
+<div class="text-right">
+<p class="font-bold font-label-sm">02:20 PM</p>
+<span class="text-[10px] bg-tertiary-container px-2 py-0.5 border-thin font-bold font-label-sm">Aduh!</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions Grid -->
+<section class="grid grid-cols-2 gap-4">
+<a href="pos.html" class="bg-primary-container border-thick block-shadow p-4 h-32 flex flex-col justify-between group hover:bg-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-3xl group-hover:text-white" data-icon="add_shopping_cart">add_shopping_cart</span>
+<span class="font-headline-lg-mobile group-hover:text-white">POS Kasir</span>
+</a>
+<a href="inventaris.html" class="bg-secondary-fixed border-thick block-shadow p-4 h-32 flex flex-col justify-between group hover:bg-secondary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-3xl group-hover:text-white" data-icon="inventory">inventory</span>
+<span class="font-headline-lg-mobile group-hover:text-white">Stok</span>
+</a>
+<a href="laporan.html" class="col-span-2 bg-surface border-thick block-shadow p-4 flex items-center justify-between cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl text-tertiary" data-icon="monitoring">monitoring</span>
+<span class="font-headline-lg-mobile">Laporan Laba</span>
+</div>
+<span class="material-symbols-outlined" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+</a>
+</section>
+<!-- Decorative Comic Break -->
+<section class="relative py-8 flex justify-center overflow-hidden">
+<div class="absolute inset-0 halftone-bg opacity-20"></div>
+<div class="z-10 text-center space-y-2">
+<div class="bg-background border-thick px-6 py-3 block-shadow transform -rotate-1 relative inline-block">
+<p class="font-headline-lg-mobile uppercase italic">Usaha Lancar, Hati Tenang! ✨</p>
+</div>
+<p class="text-on-surface-variant font-speech-bubble italic">Mewujudkan impian keluarga satu per satu.</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-background dark:bg-inverse-surface border-t-thick border-on-surface dark:border-on-surface-variant shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)] flex justify-around items-end px-2 pb-4 pt-2">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed-dim font-bold scale-110 translate-y-[-2px] transition-transform" href="dashboard.html">
+<span class="material-symbols-outlined text-[24px]" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<!-- Stok -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="inventaris.html">
+<span class="material-symbols-outlined text-[24px]" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-sm font-label-sm">Stok</span>
+</a>
+<!-- POS FAB -->
+<a class="flex flex-col items-center justify-center bg-primary-container border-thick block-shadow-sm -translate-y-4 w-14 h-14 rounded-full active:scale-95 transition-transform duration-100" href="pos.html">
+<span class="material-symbols-outlined text-[32px] text-primary" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</a>
+<!-- Laporan -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="laporan.html">
+<span class="material-symbols-outlined text-[24px]" data-icon="analytics">analytics</span>
+<span class="text-label-sm font-label-sm">Laporan</span>
+</a>
+<!-- Profil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-70 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="profil.html">
+<span class="material-symbols-outlined text-[24px]" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm">Profil</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for tapping panels
+        document.querySelectorAll('.block-shadow, .block-shadow-sm').forEach(panel => {
+            panel.addEventListener('mousedown', () => {
+                panel.style.transform = 'translate(2px, 2px)';
+                panel.style.boxShadow = 'none';
+            });
+            panel.addEventListener('mouseup', () => {
+                panel.style.transform = '';
+                panel.style.boxShadow = panel.classList.contains('block-shadow') ? '4px 4px 0px 0px rgba(0,0,0,1)' : '2px 2px 0px 0px rgba(0,0,0,1)';
+            });
+        });
+    </script>
+</body></html>
