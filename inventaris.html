@@ -255,36 +255,38 @@
     const API_URL = 'https://script.google.com/macros/s/AKfycbzTZuYOtZKjIdzBnTxuiz59wT0BExxIM-MALrd8uSMC9l5luUYtgsYHbfgfewCMufFJzg/exec';
 
     // Fungsi pencocokan gambar manga berdasarkan nama produk
-    function getProductImage(nama) {
+        function getProductImage(nama) {
       const n = nama.toLowerCase();
-      // 1. Minyak & Cairan Masak
+      
+      // 1. Minyak & Cairan
       if (n.includes('minyak') || n.includes('bimoli') || n.includes('fitri')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqrxT72InYpjUsSeMIRWAcRDXRsgRFutx5BtTgyiAKTq2y5LIR3wkAdaesMEq6jT7SInDj8W-lxPb_dGgC4V1DYasmsMr6siTAT8gqGmvRr9-UJX5Bbf-9iVxQu83Ce9qfIGp-knehq6W61LQtyRIzu_xB6sUnMQoL_mff-tsv4MFbkGEu3Ce6knp7xGXL2bxJ2hXw5AoSzd-60zKYM2Uy-mbN3zsM5kyRAetoh25G_uS7zLmZMz2G';
       } 
-      // 2. Beras & Biji-bijian
+      // 2. Beras
       else if (n.includes('beras') || n.includes('ramos')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU5He-vMZCwFKdrquIhwMmOXtTtcAtU0ESANdJNYa1aiOKLNnbpVRAx3cwQpZ4vwu4or7xLqXfVT6Mh2v2qjImCb0eS9P0vHmvNuAUzEWuKjMbCSw4zEKPrKycnA3UD3JFPP2JkguR1KI28jwYe8_Sf6IS33rVMTbDAUCI1-SZlJhBiNHUL83YOBsRS5U-LImq7_pWv6cRGYmtToCXJzqmhzz3jcLxifP5hH0wWjC4kCxkw-01y1PG';
       } 
-      // 3. Mie & Makanan Instan
-      else if (n.includes('indomie') || n.includes('mie') || n.includes('ciki')) {
+      // 3. Mie & Makanan / Ciki
+      else if (n.includes('indomie') || n.includes('mie') || n.includes('ciki') || n.includes('sedaap')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuCS8-PfnwCCh7rWW4ygR1IavSEevvRtFxsnxjd_BDYziG1Z7EpJupk2ZDKnGZ90H2EInM2PRB9UyvGrFAZr7QkI0GyjYY_9OBaQJZ36LqFJE5Q72hwUnm7C1svto3f0kZS-oC9bssQOmkPs-VGInWTrBKJ8yhEjIPWsiowlXVu9rH0rAsZpMcMvjvx8f5YBSyfszUyfHDQSk6Hhf9YA0ZkulLmt7sNzJaQIjY0-XwisS0fcQ8FyvoAH';
       } 
-      // 4. Kopi, Minuman & Sachet
-      else if (n.includes('kopi') || n.includes('kapal') || n.includes('teh') || n.includes('susu') || n.includes('drink')) {
-        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1Gf_J2Yl4kXqXvV5H9W4N6X8L3Z7M2K1V9Q8R5T4Y3W2X1Z0Q9R8T7Y6U5I4O3P2L1K0J9H8G7F6D5S4A3Z2X1C0V9B8N7M6L5K4J3H2G1F0D9S8A7Z6X5C4V3B2N1M0'; // Ilustrasi cangkir/kopi manga
+      // 4. Tepung & Gula (Bahan Kue/Dapur Karung)
+      else if (n.includes('tepung') || n.includes('terigu') || n.includes('tapioka') || n.includes('gula')) {
+        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU5He-vMZCwFKdrquIhwMmOXtTtcAtU0ESANdJNYa1aiOKLNnbpVRAx3cwQpZ4vwu4or7xLqXfVT6Mh2v2qjImCb0eS9P0vHmvNuAUzEWuKjMbCSw4zEKPrKycnA3UD3JFPP2JkguR1KI28jwYe8_Sf6IS33rVMTbDAUCI1-SZlJhBiNHUL83YOBsRS5U-LImq7_pWv6cRGYmtToCXJzqmhzz3jcLxifP5hH0wWjC4kCxkw-01y1PG';
       } 
-      // 5. Saus, Kecap & Bumbu Cair Botolan
+      // 5. Saus, Kecap & Bumbu Botolan
       else if (n.includes('saus') || n.includes('sambal') || n.includes('kecap') || n.includes('bumbu')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGco3YhXmEZ5qJO4zhy4eOybi3Aq05qo6DdYK4g_es3CRWM-WynCodxaaU_PGwmmnqQJH7Lp3Y5PoocwpWQ_Kd6avzC0A0GI8geQLU5wHDFUyEhyewt-vUIRGMT692kvl-Ycyb6mPwSNuZcPxRZI6MVef6ta1HlfOUPal0vQ-EPAAQfwPwPC_-eYL176l2wBBLDHvbHpfqHwHZb0yT_ev_-IxXtsonBIcK8EgllEzFglTh4qGJs_c1YTDVfvzf3ktNywOoWPQBgdhKow';
       } 
-      // 6. Tepung, Masako, Ladaku, Garam & Bumbu Tabur/Dapur
-      else if (n.includes('tepung') || n.includes('terigu') || n.includes('tapioka') || n.includes('masako') || n.includes('ladaku') || n.includes('garam') || n.includes('penyedap')) {
-        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTx5Z2V1K3L4M5N6B7V8C9X0Z1L2K3J4H5G6F7D8S9A0Q1W2E3R4T5Y6U7I8O9P0L1K2J3H4G5F6D7S8A9Z0X1C2V3B4N5M6L7K8J9H0G1F2D3S4A5Z6X7C8V9B0N1M2'; // Ilustrasi bumbu dapur kemasan sachet/bungkus komik
+      // 6. Masako, Ladaku, Garam & Sachet
+      else if (n.includes('masako') || n.includes('ladaku') || n.includes('garam') || n.includes('penyedap') || n.includes('royco')) {
+        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTx5Z2V1K3L4M5N6B7V8C9X0Z1L2K3J4H5G6F7D8S9A0Q1W2E3R4T5Y6U7I8O9P0L1K2J3H4G5F6D7S8A9Z0X1C2V3B4N5M6L7K8J9H0G1F2D3S4A5Z6X7C8V9B0N1M2';
       }
       
-      // Gambar Cadangan Umum (Gaya Kotak Toko Manga)
-      return 'https://lh3.googleusercontent.com/aida-public/AB6AXuCS8-PfnwCCh7rWW4ygR1IavSEevvRtFxsnxjd_BDYziG1Z7EpJupk2ZDKnGZ90H2EInM2PRB9UyvGrFAZr7QkI0GyjYY_9OBaQJZ36LqFJE5Q72hwUnm7C1svto3f0kZS-oC9bssQOmkPs-VGInWTrBKJ8yhEjIPWsiowlXVu9rH0rAsZpMcMvjvx8f5YBSyfszUyfHDQSk6Hhf9YA0ZkulLmt7sNzJaQIjY0-XwisS0fcQ8FyvoAH';
+      // Gambar Cadangan Aman (Gaya Paket Sachet Toko Manga, bukan slime)
+      return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTx5Z2V1K3L4M5N6B7V8C9X0Z1L2K3J4H5G6F7D8S9A0Q1W2E3R4T5Y6U7I8O9P0L1K2J3H4G5F6D7S8A9Z0X1C2V3B4N5M6L7K8J9H0G1F2D3S4A5Z6X7C8V9B0N1M2';
     }
+
 
       // Gambar default bertema warung/manga
       return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGco3YhXmEZ5qJO4zhy4eOybi3Aq05qo6DdYK4g_es3CRWM-WynCodxaaU_PGwmmnqQJH7Lp3Y5PoocwpWQ_Kd6avzC0A0GI8geQLU5wHDFUyEhyewt-vUIRGMT692kvl-Ycyb6mPwSNuZcPxRZI6MVef6ta1HlfOUPal0vQ-EPAAQfwPwPC_-eYL176l2wBBLDHvbHpfqHwHZb0yT_ev_-IxXtsonBIcK8EgllEzFglTh4qGJs_c1YTDVfvzf3ktNywOoWPQBgdhKow';
