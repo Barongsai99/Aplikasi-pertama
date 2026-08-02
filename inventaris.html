@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-
 <html class="light" lang="id"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Inventaris Barang - Manga Style</title>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;family=Metrophobic&amp;family=Bricolage+Grotesque:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Metrophobic&family=Bricolage+Grotesque:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
         tailwind.config = {
@@ -153,7 +151,6 @@
 </div>
 </div>
 <div class="flex justify-between gap-1">
-<!-- Days Strip -->
 <div class="flex flex-col items-center bg-background border-thin border-on-background p-2 rounded-lg w-10">
 <span class="font-label-sm text-[10px]">Mon</span>
 <span class="font-bold">20</span>
@@ -192,9 +189,7 @@
                     *Zzzzt!*
                 </div>
 </div>
-<!-- Dynamic product list injected by JS -->
 <div id="product-list">
-  <!-- Loading state -->
   <div id="inventaris-loading" class="manga-panel bg-surface p-6 rounded-xl flex flex-col items-center gap-3">
     <div class="w-10 h-10 border-[3px] border-primary border-t-transparent rounded-full animate-spin"></div>
     <p class="font-speech-bubble text-sm italic text-on-surface-variant">Memuat data dari Google Sheets...</p>
@@ -259,6 +254,22 @@
 <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbzTZuYOtZKjIdzBnTxuiz59wT0BExxIM-MALrd8uSMC9l5luUYtgsYHbfgfewCMufFJzg/exec';
 
+    // Fungsi pencocokan gambar manga berdasarkan nama produk
+    function getProductImage(nama) {
+      const n = nama.toLowerCase();
+      if (n.includes('minyak') || n.includes('bimoli') || n.includes('fitri')) {
+        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqrxT72InYpjUsSeMIRWAcRDXRsgRFutx5BtTgyiAKTq2y5LIR3wkAdaesMEq6jT7SInDj8W-lxPb_dGgC4V1DYasmsMr6siTAT8gqGmvRr9-UJX5Bbf-9iVxQu83Ce9qfIGp-knehq6W61LQtyRIzu_xB6sUnMQoL_mff-tsv4MFbkGEu3Ce6knp7xGXL2bxJ2hXw5AoSzd-60zKYM2Uy-mbN3zsM5kyRAetoh25G_uS7zLmZMz2G';
+      } else if (n.includes('beras') || n.includes('ramos')) {
+        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU5He-vMZCwFKdrquIhwMmOXtTtcAtU0ESANdJNYa1aiOKLNnbpVRAx3cwQpZ4vwu4or7xLqXfVT6Mh2v2qjImCb0eS9P0vHmvNuAUzEWuKjMbCSw4zEKPrKycnA3UD3JFPP2JkguR1KI28jwYe8_Sf6IS33rVMTbDAUCI1-SZlJhBiNHUL83YOBsRS5U-LImq7_pWv6cRGYmtToCXJzqmhzz3jcLxifP5hH0wWjC4kCxkw-01y1PG';
+      } else if (n.includes('indomie') || n.includes('mie')) {
+        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuCS8-PfnwCCh7rWW4ygR1IavSEevvRtFxsnxjd_BDYziG1Z7EpJupk2ZDKnGZ90H2EInM2PRB9UyvGrFAZr7QkI0GyjYY_9OBaQJZ36LqFJE5Q72hwUnm7C1svto3f0kZS-oC9bssQOmkPs-VGInWTrBKJ8yhEjIPWsiowlXVu9rH0rAsZpMcMvjvx8f5YBSyfszUyfHDQSk6Hhf9YA0ZkulLmt7sNzJaQIjY0-XwisS0fcQ8FyvoAH';
+      } else if (n.includes('tepung') || n.includes('terigu') || n.includes('tapioka')) {
+        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGco3YhXmEZ5qJO4zhy4eOybi3Aq05qo6DdYK4g_es3CRWM-WynCodxaaU_PGwmmnqQJH7Lp3Y5PoocwpWQ_Kd6avzC0A0GI8geQLU5wHDFUyEhyewt-vUIRGMT692kvl-Ycyb6mPwSNuZcPxRZI6MVef6ta1HlfOUPal0vQ-EPAAQfwPwPC_-eYL176l2wBBLDHvbHpfqHwHZb0yT_ev_-IxXtsonBIcK8EgllEzFglTh4qGJs_c1YTDVfvzf3ktNywOoWPQBgdhKow';
+      }
+      // Gambar default bertema warung/manga
+      return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGco3YhXmEZ5qJO4zhy4eOybi3Aq05qo6DdYK4g_es3CRWM-WynCodxaaU_PGwmmnqQJH7Lp3Y5PoocwpWQ_Kd6avzC0A0GI8geQLU5wHDFUyEhyewt-vUIRGMT692kvl-Ycyb6mPwSNuZcPxRZI6MVef6ta1HlfOUPal0vQ-EPAAQfwPwPC_-eYL176l2wBBLDHvbHpfqHwHZb0yT_ev_-IxXtsonBIcK8EgllEzFglTh4qGJs_c1YTDVfvzf3ktNywOoWPQBgdhKow';
+    }
+
     async function loadInventaris() {
       const list = document.getElementById('product-list');
       try {
@@ -275,10 +286,11 @@
 
         list.innerHTML = products.map(p => {
           const isLow = Number(p.Stok_Tersedia) <= 5;
+          const imgSrc = getProductImage(p.Nama_Barang);
           return `
           <div class="manga-panel bg-surface p-3 rounded-xl flex items-center gap-4 group hover:bg-surface-container transition-all">
             <div class="w-16 h-16 border-thick border-on-background rounded-lg bg-surface-container overflow-hidden flex-shrink-0 flex items-center justify-center">
-              <span class="material-symbols-outlined text-3xl text-on-surface-variant">inventory_2</span>
+              <img src="${imgSrc}" alt="${p.Nama_Barang}" class="w-full h-full object-cover"/>
             </div>
             <div class="flex-grow">
               <p class="font-bold font-speech-bubble">${p.Nama_Barang}</p>
@@ -299,7 +311,6 @@
           </div>`;
         }).join('');
 
-        // Re-attach sticker micro-interactions
         document.querySelectorAll('.comic-sticker').forEach(sticker => {
           sticker.addEventListener('mouseenter', () => sticker.style.transform = 'rotate(0deg) scale(1.1)');
           sticker.addEventListener('mouseleave', () => sticker.style.transform = 'rotate(-5deg)');
