@@ -100,11 +100,6 @@
             position: relative;
             overflow: hidden;
         }
-        .halftone-bg {
-            background-image: radial-gradient(#1c1b1b 1px, transparent 1px);
-            background-size: 8px 8px;
-            opacity: 0.1;
-        }
         .comic-sticker {
             transform: rotate(-5deg);
             box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
@@ -125,14 +120,8 @@
         .border-b-thick { border-bottom-width: 3px; }
         .border-on-background { border-color: #1c1b1b; }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
 </head>
 <body class="bg-background text-on-background font-body-md text-body-md min-h-screen pb-24">
-<!-- Top App Bar -->
 <header class="fixed top-0 left-0 w-full z-50 bg-background border-b-thick border-on-background px-4 py-4 flex justify-between items-center">
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-on-background">menu</span>
@@ -141,7 +130,6 @@
 <span class="material-symbols-outlined text-on-background">calendar_month</span>
 </header>
 <main class="pt-20 px-4 space-y-6">
-<!-- Weekly Calendar Panel -->
 <section class="manga-panel bg-primary-container p-4 rounded-xl mt-4">
 <div class="flex justify-between items-center mb-4">
 <span class="font-label-sm text-label-sm bg-background border-thin border-on-background px-3 py-1 rounded-full">September 2023</span>
@@ -151,43 +139,20 @@
 </div>
 </div>
 <div class="flex justify-between gap-1">
-<div class="flex flex-col items-center bg-background border-thin border-on-background p-2 rounded-lg w-10">
-<span class="font-label-sm text-[10px]">Mon</span>
-<span class="font-bold">20</span>
-</div>
-<div class="flex flex-col items-center bg-secondary-container border-thick border-on-background p-2 rounded-lg w-12 shadow-[2px_2px_0_0_rgba(0,0,0,1)] -translate-y-1">
-<span class="font-label-sm text-[10px]">Tue</span>
-<span class="font-bold">21</span>
-</div>
-<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
-<span class="font-label-sm text-[10px]">Wed</span>
-<span class="font-bold">22</span>
-</div>
-<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
-<span class="font-label-sm text-[10px]">Thu</span>
-<span class="font-bold">23</span>
-</div>
-<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
-<span class="font-label-sm text-[10px]">Fri</span>
-<span class="font-bold">24</span>
-</div>
-<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
-<span class="font-label-sm text-[10px]">Sat</span>
-<span class="font-bold">25</span>
-</div>
-<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10">
-<span class="font-label-sm text-[10px]">Sun</span>
-<span class="font-bold text-error">26</span>
-</div>
+<div class="flex flex-col items-center bg-background border-thin border-on-background p-2 rounded-lg w-10"><span class="font-label-sm text-[10px]">Mon</span><span class="font-bold">20</span></div>
+<div class="flex flex-col items-center bg-secondary-container border-thick border-on-background p-2 rounded-lg w-12 shadow-[2px_2px_0_0_rgba(0,0,0,1)] -translate-y-1"><span class="font-label-sm text-[10px]">Tue</span><span class="font-bold">21</span></div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10"><span class="font-label-sm text-[10px]">Wed</span><span class="font-bold">22</span></div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10"><span class="font-label-sm text-[10px]">Thu</span><span class="font-bold">23</span></div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10"><span class="font-label-sm text-[10px]">Fri</span><span class="font-bold">24</span></div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10"><span class="font-label-sm text-[10px]">Sat</span><span class="font-bold">25</span></div>
+<div class="flex flex-col items-center bg-background/50 border-thin border-on-background p-2 rounded-lg w-10"><span class="font-label-sm text-[10px]">Sun</span><span class="font-bold text-error">26</span></div>
 </div>
 </section>
-<!-- Inventory List -->
+
 <section class="space-y-4">
 <div class="flex items-center justify-between">
 <h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold">Barang</h2>
-<div class="bg-secondary p-1 border-thin border-on-background rounded-lg text-on-secondary font-label-sm text-xs">
-                    *Zzzzt!*
-                </div>
+<div class="bg-secondary p-1 border-thin border-on-background rounded-lg text-on-secondary font-label-sm text-xs">*Zzzzt!*</div>
 </div>
 <div id="product-list">
   <div id="inventaris-loading" class="manga-panel bg-surface p-6 rounded-xl flex flex-col items-center gap-3">
@@ -196,100 +161,33 @@
   </div>
 </div>
 </section>
-<!-- Best Seller Section -->
-<section class="manga-panel bg-secondary-container p-5 rounded-2xl relative">
-<div class="absolute top-[-15px] right-[20px] comic-sticker bg-white px-4 py-1 font-bold text-sm transform rotate-6 border-thick border-on-background">
-                Cha-ching! 💰
-            </div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile font-bold mb-4">Produk Terlaris Minggu Ini</h3>
-<div class="bg-background border-thick border-on-background rounded-xl p-4 flex items-center gap-4 shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
-<div class="relative w-20 h-20 flex-shrink-0">
-<div class="absolute -top-2 -left-2 bg-on-secondary-fixed text-white p-1 rounded-full border-thin border-on-background z-20">
-<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
-</div>
-<img alt="Manga-style instant noodles pack" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS8-PfnwCCh7rWW4ygR1IavSEevvRtFxsnxjd_BDYziG1Z7EpJupk2ZDKnGZ90H2EInM2PRB9UyvGrFAZr7QkI0GyjYY_9OBaQJZ36LqFJE5Q72hwUnm7C1svto3f0kZS-oC9bssQOmkPs-VGInWTrBKJ8yhEjIPWsiowlXVu9rH0rAsZpMcMvjvx8f5YBSyfszUyfHDQSk6Hhf9YA0ZkulLmt7sNzJaQIjY0-XwisS0fcQ8FyvoAH"/>
-</div>
-<div>
-<p class="font-headline-lg text-headline-lg font-bold leading-tight">Indomie Goreng</p>
-<p class="font-speech-bubble text-primary font-bold mt-1">150 Pcs Terjual!</p>
-<div class="mt-2 flex gap-1">
-<div class="h-2 w-12 bg-primary rounded border-thin border-on-background"></div>
-<div class="h-2 w-8 bg-primary/40 rounded border-thin border-on-background"></div>
-<div class="h-2 w-4 bg-primary/20 rounded border-thin border-on-background"></div>
-</div>
-</div>
-</div>
-<div class="mt-4 flex items-start gap-2">
-<div class="w-8 h-8 rounded-full bg-background border-thin border-on-background flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-sm">lightbulb</span>
-</div>
-<div class="bg-background border-thin border-on-background p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl speech-bubble-tip relative">
-<p class="font-speech-bubble text-xs italic">"Sok lengkap hari ini, pelanggan senang besok."</p>
-</div>
-</div>
-</section>
 </main>
-<!-- Bottom Navigation Bar -->
+
 <nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 bg-surface border-t-thick border-on-background z-50">
-<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
-<span class="material-symbols-outlined" data-icon="home">home</span>
-<span class="font-label-sm text-label-sm">Home</span>
-</a>
-<a href="inventaris.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl border-thick border-on-background px-4 py-1 translate-y-[-4px] shadow-[4px_4px_0_0_rgba(0,0,0,1)] scale-90 duration-75">
-<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
-<span class="font-label-sm text-label-sm font-bold">Stok</span>
-</a>
-<a href="pos.html" class="flex items-center justify-center bg-primary text-on-primary w-14 h-14 rounded-full border-thick border-on-background shadow-[4px_4px_0_0_rgba(0,0,0,1)] -translate-y-6 hover:scale-105 transition-transform active:scale-95">
-<span class="material-symbols-outlined text-3xl" data-icon="add_box">add_box</span>
-</a>
-<a href="laporan.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
-<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
-<span class="font-label-sm text-label-sm">Laporan</span>
-</a>
-<a href="profil.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-primary-container/20 transition-colors">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-<span class="font-label-sm text-label-sm">Profil</span>
-</a>
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1"><span class="material-symbols-outlined">home</span><span class="font-label-sm text-label-sm">Home</span></a>
+<a href="inventaris.html" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl border-thick border-on-background px-4 py-1 translate-y-[-4px] shadow-[4px_4px_0_0_rgba(0,0,0,1)] scale-90"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span><span class="font-label-sm text-label-sm font-bold">Stok</span></a>
+<a href="pos.html" class="flex items-center justify-center bg-primary text-on-primary w-14 h-14 rounded-full border-thick border-on-background shadow-[4px_4px_0_0_rgba(0,0,0,1)] -translate-y-6"><span class="material-symbols-outlined text-3xl">add_box</span></a>
+<a href="laporan.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1"><span class="material-symbols-outlined">assessment</span><span class="font-label-sm text-label-sm">Laporan</span></a>
+<a href="profil.html" class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1"><span class="material-symbols-outlined">person</span><span class="font-label-sm text-label-sm">Profil</span></a>
 </nav>
+
 <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbzTZuYOtZKjIdzBnTxuiz59wT0BExxIM-MALrd8uSMC9l5luUYtgsYHbfgfewCMufFJzg/exec';
 
-    // Fungsi pencocokan gambar manga berdasarkan nama produk
-        function getProductImage(nama) {
+    function getProductImage(nama) {
       const n = nama.toLowerCase();
-      
-      // 1. Minyak & Cairan
       if (n.includes('minyak') || n.includes('bimoli') || n.includes('fitri')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqrxT72InYpjUsSeMIRWAcRDXRsgRFutx5BtTgyiAKTq2y5LIR3wkAdaesMEq6jT7SInDj8W-lxPb_dGgC4V1DYasmsMr6siTAT8gqGmvRr9-UJX5Bbf-9iVxQu83Ce9qfIGp-knehq6W61LQtyRIzu_xB6sUnMQoL_mff-tsv4MFbkGEu3Ce6knp7xGXL2bxJ2hXw5AoSzd-60zKYM2Uy-mbN3zsM5kyRAetoh25G_uS7zLmZMz2G';
-      } 
-      // 2. Beras
-      else if (n.includes('beras') || n.includes('ramos')) {
+      } else if (n.includes('beras') || n.includes('ramos')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU5He-vMZCwFKdrquIhwMmOXtTtcAtU0ESANdJNYa1aiOKLNnbpVRAx3cwQpZ4vwu4or7xLqXfVT6Mh2v2qjImCb0eS9P0vHmvNuAUzEWuKjMbCSw4zEKPrKycnA3UD3JFPP2JkguR1KI28jwYe8_Sf6IS33rVMTbDAUCI1-SZlJhBiNHUL83YOBsRS5U-LImq7_pWv6cRGYmtToCXJzqmhzz3jcLxifP5hH0wWjC4kCxkw-01y1PG';
-      } 
-      // 3. Mie & Makanan / Ciki
-      else if (n.includes('indomie') || n.includes('mie') || n.includes('ciki') || n.includes('sedaap')) {
+      } else if (n.includes('indomie') || n.includes('mie') || n.includes('ciki') || n.includes('sedaap')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuCS8-PfnwCCh7rWW4ygR1IavSEevvRtFxsnxjd_BDYziG1Z7EpJupk2ZDKnGZ90H2EInM2PRB9UyvGrFAZr7QkI0GyjYY_9OBaQJZ36LqFJE5Q72hwUnm7C1svto3f0kZS-oC9bssQOmkPs-VGInWTrBKJ8yhEjIPWsiowlXVu9rH0rAsZpMcMvjvx8f5YBSyfszUyfHDQSk6Hhf9YA0ZkulLmt7sNzJaQIjY0-XwisS0fcQ8FyvoAH';
-      } 
-      // 4. Tepung & Gula (Bahan Kue/Dapur Karung)
-      else if (n.includes('tepung') || n.includes('terigu') || n.includes('tapioka') || n.includes('gula')) {
+      } else if (n.includes('tepung') || n.includes('terigu') || n.includes('tapioka') || n.includes('gula')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU5He-vMZCwFKdrquIhwMmOXtTtcAtU0ESANdJNYa1aiOKLNnbpVRAx3cwQpZ4vwu4or7xLqXfVT6Mh2v2qjImCb0eS9P0vHmvNuAUzEWuKjMbCSw4zEKPrKycnA3UD3JFPP2JkguR1KI28jwYe8_Sf6IS33rVMTbDAUCI1-SZlJhBiNHUL83YOBsRS5U-LImq7_pWv6cRGYmtToCXJzqmhzz3jcLxifP5hH0wWjC4kCxkw-01y1PG';
-      } 
-      // 5. Saus, Kecap & Bumbu Botolan
-      else if (n.includes('saus') || n.includes('sambal') || n.includes('kecap') || n.includes('bumbu')) {
+      } else if (n.includes('saus') || n.includes('sambal') || n.includes('kecap') || n.includes('bumbu')) {
         return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGco3YhXmEZ5qJO4zhy4eOybi3Aq05qo6DdYK4g_es3CRWM-WynCodxaaU_PGwmmnqQJH7Lp3Y5PoocwpWQ_Kd6avzC0A0GI8geQLU5wHDFUyEhyewt-vUIRGMT692kvl-Ycyb6mPwSNuZcPxRZI6MVef6ta1HlfOUPal0vQ-EPAAQfwPwPC_-eYL176l2wBBLDHvbHpfqHwHZb0yT_ev_-IxXtsonBIcK8EgllEzFglTh4qGJs_c1YTDVfvzf3ktNywOoWPQBgdhKow';
-      } 
-      // 6. Masako, Ladaku, Garam & Sachet
-      else if (n.includes('masako') || n.includes('ladaku') || n.includes('garam') || n.includes('penyedap') || n.includes('royco')) {
-        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTx5Z2V1K3L4M5N6B7V8C9X0Z1L2K3J4H5G6F7D8S9A0Q1W2E3R4T5Y6U7I8O9P0L1K2J3H4G5F6D7S8A9Z0X1C2V3B4N5M6L7K8J9H0G1F2D3S4A5Z6X7C8V9B0N1M2';
       }
-      
-      // Gambar Cadangan Aman (Gaya Paket Sachet Toko Manga, bukan slime)
       return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTx5Z2V1K3L4M5N6B7V8C9X0Z1L2K3J4H5G6F7D8S9A0Q1W2E3R4T5Y6U7I8O9P0L1K2J3H4G5F6D7S8A9Z0X1C2V3B4N5M6L7K8J9H0G1F2D3S4A5Z6X7C8V9B0N1M2';
-    }
-
-
-      // Gambar default bertema warung/manga
-      return 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGco3YhXmEZ5qJO4zhy4eOybi3Aq05qo6DdYK4g_es3CRWM-WynCodxaaU_PGwmmnqQJH7Lp3Y5PoocwpWQ_Kd6avzC0A0GI8geQLU5wHDFUyEhyewt-vUIRGMT692kvl-Ycyb6mPwSNuZcPxRZI6MVef6ta1HlfOUPal0vQ-EPAAQfwPwPC_-eYL176l2wBBLDHvbHpfqHwHZb0yT_ev_-IxXtsonBIcK8EgllEzFglTh4qGJs_c1YTDVfvzf3ktNywOoWPQBgdhKow';
     }
 
     async function loadInventaris() {
@@ -300,9 +198,7 @@
         const products = await res.json();
 
         if (!products.length) {
-          list.innerHTML = `<div class="manga-panel bg-surface p-6 rounded-xl text-center">
-            <p class="font-speech-bubble text-sm italic text-on-surface-variant">Belum ada produk di Google Sheets.</p>
-          </div>`;
+          list.innerHTML = `<div class="manga-panel bg-surface p-6 rounded-xl text-center"><p class="font-speech-bubble text-sm italic text-on-surface-variant">Belum ada produk.</p></div>`;
           return;
         }
 
@@ -310,7 +206,7 @@
           const isLow = Number(p.Stok_Tersedia) <= 5;
           const imgSrc = getProductImage(p.Nama_Barang);
           return `
-          <div class="manga-panel bg-surface p-3 rounded-xl flex items-center gap-4 group hover:bg-surface-container transition-all">
+          <div class="manga-panel bg-surface p-3 rounded-xl flex items-center gap-4 mb-3">
             <div class="w-16 h-16 border-thick border-on-background rounded-lg bg-surface-container overflow-hidden flex-shrink-0 flex items-center justify-center">
               <img src="${imgSrc}" alt="${p.Nama_Barang}" class="w-full h-full object-cover"/>
             </div>
@@ -319,10 +215,8 @@
               <p class="font-label-sm text-[11px] text-on-surface-variant mt-0.5">Rp ${Number(p.Harga_Jual).toLocaleString('id-ID')}</p>
               <div class="flex items-center gap-2 mt-1">
                 ${isLow
-                  ? `<span class="material-symbols-outlined text-error text-sm" style="font-variation-settings:'FILL' 1;">warning</span>
-                     <span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded border-thin border-on-background">STOK RENDAH</span>`
-                  : `<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
-                     <span class="bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded border-thin border-on-background">AMAN</span>`
+                  ? `<span class="material-symbols-outlined text-error text-sm" style="font-variation-settings:'FILL' 1;">warning</span><span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded border-thin border-on-background">STOK RENDAH</span>`
+                  : `<span class="material-symbols-outlined text-secondary text-sm">check_circle</span><span class="bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded border-thin border-on-background">AMAN</span>`
                 }
               </div>
             </div>
@@ -332,17 +226,8 @@
             </div>
           </div>`;
         }).join('');
-
-        document.querySelectorAll('.comic-sticker').forEach(sticker => {
-          sticker.addEventListener('mouseenter', () => sticker.style.transform = 'rotate(0deg) scale(1.1)');
-          sticker.addEventListener('mouseleave', () => sticker.style.transform = 'rotate(-5deg)');
-        });
-
       } catch (err) {
-        list.innerHTML = `<div class="manga-panel bg-error-container p-5 rounded-xl border-thick border-on-background">
-          <p class="font-speech-bubble text-sm font-bold text-on-error-container">⚠️ Gagal memuat data: ${err.message}</p>
-          <button onclick="loadInventaris()" class="mt-3 bg-surface border-thick border-on-background px-4 py-1.5 font-label-sm text-label-sm block-shadow-sm">Coba Lagi</button>
-        </div>`;
+        list.innerHTML = `<div class="manga-panel bg-error-container p-5 rounded-xl border-thick border-on-background"><p class="font-speech-bubble text-sm font-bold text-on-error-container">⚠️ Gagal memuat data</p></div>`;
       }
     }
 
